@@ -1,6 +1,7 @@
 # docker-shell
 
 A set of usefull functions for writing interactive [docker](https://www.docker.com/) `build` and `run` scripts.
+Dependencies are: [`rlwrap`](http://utopia.knoware.nl/~hlub/uck/rlwrap/#rlwrap), `bash`, `sudo`, `curl`, and `docker` (surprise! :)
 
 Functions take named parameters via environment variables e.g. `FOO="test" my_func`, 
 most require a special variable named `VAR` which contains name of environment 
