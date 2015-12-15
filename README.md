@@ -15,7 +15,7 @@ echo $TEST # outputs result of running my_foo
 
 `shared-functions.sh` is not that long, go ahead and read it. Each function contains 
 a comment with possible argument variables. Some of them are bypassed as is to an 
-inner function invokation so it's not that obvious.
+inner function invocation so it's not that obvious.
 
 Note, that after running set of commands with the right name passed to `VAR` there is 
 no need pass that vars to later commands explicitly:
