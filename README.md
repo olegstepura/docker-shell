@@ -18,7 +18,7 @@ a comment with possible argument variables. Some of them are bypassed as is to a
 inner function invocation so it's not that obvious.
 
 Note, that after running set of commands with the right name passed to `VAR` there is 
-no need pass that vars to later commands explicitly:
+no need to pass that vars to later commands explicitly:
 ```bash
 VAR=TEST1 my_foo
 VAR=TEST2 my_bar
