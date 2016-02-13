@@ -1,6 +1,7 @@
 # docker-shell
 
 A set of usefull functions for writing interactive [docker](https://www.docker.com/) `build` and `run` scripts.
+Dependencies are: [`rlwrap`](http://utopia.knoware.nl/~hlub/uck/rlwrap/#rlwrap) (available in debian), `bash`, `sudo`, `curl`, and `docker` (surprise! :)
 
 Functions take named parameters via environment variables e.g. `FOO="test" my_func`, 
 most require a special variable named `VAR` which contains name of environment 
@@ -14,10 +15,10 @@ echo $TEST # outputs result of running my_foo
 
 `shared-functions.sh` is not that long, go ahead and read it. Each function contains 
 a comment with possible argument variables. Some of them are bypassed as is to an 
-inner function invokation so it's not that obvious.
+inner function invocation so it's not that obvious.
 
 Note, that after running set of commands with the right name passed to `VAR` there is 
-no need pass that vars to later commands explicitly:
+no need to pass that vars to later commands explicitly:
 ```bash
 VAR=TEST1 my_foo
 VAR=TEST2 my_bar
