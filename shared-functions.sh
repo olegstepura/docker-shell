@@ -1,5 +1,7 @@
 #!/bin/bash
 
+REQUIRED_SHELL_FEATURES="sudo docker cat head base64 netstat tput ls rm eval read stat awk grep tr rlwrap"
+
 TXTRED='\e[0;31m' # red
 TXTGRN='\e[0;32m' # green
 TXTYLW='\e[0;33m' # yellow
@@ -241,3 +243,7 @@ function docker_build {
 	local COMMAND="sudo docker build --force-rm=true --rm=true $ARGUMENTS -t \"$IMAGE\" \"$DIR\""
 	_run "$COMMAND"
 }
+
+for i in $REQUIRED_SHELL_FEATURES; do
+    type $i >/dev/null 2>&1 || { echo -e "\n\n${BLDRED}Command \"${BLDCYN}$i${BLDRED}\" is not available! Required programs/shell features: ${TXTCYN}$REQUIRED_SHELL_FEATURES${TXTRST}\n\n"; exit 1; }
+done
