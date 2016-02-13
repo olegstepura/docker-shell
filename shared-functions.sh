@@ -194,7 +194,7 @@ function docker_enter_password {
 	if [ -z "$LENGTH" ]; then
 		LENGTH=24
 	fi
-	if [ -z "RANDOM_SOURCE" ]; then
+	if [ -z "$RANDOM_SOURCE" ]; then
 		RANDOM_SOURCE=/dev/urandom
 	fi
 	PLACEHOLDER="$(cat $RANDOM_SOURCE | head -c $LENGTH | base64 | head -c $LENGTH)" enter_value
