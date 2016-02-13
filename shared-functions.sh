@@ -177,7 +177,7 @@ function docker_enter_value {
 	# parameters: VAR, DESC, PROMPT, POSSIBLE_VALUES, PLACEHOLDER
 	banner "Please enter $DESC:"
 	if [ -z "$PROMPT" ]; then
-		PROMPT="$DESC"
+		local PROMPT="$DESC"
 	fi
 	enter_value
 	up_one_line
@@ -189,13 +189,13 @@ function docker_enter_password {
 	# parameters: VAR, DESC, PROMPT, LENGTH, RANDOM_SOURCE
 	banner "Please enter password for $DESC (below is fresh generated one, ${BLDRED}last time to copy it${BLDCYN}, it will be hidden on pressing enter):"
 	if [ -z "$PROMPT" ]; then
-		PROMPT="$DESC"
+		local PROMPT="$DESC"
 	fi
 	if [ -z "$LENGTH" ]; then
-		LENGTH=24
+		local LENGTH=24
 	fi
 	if [ -z "$RANDOM_SOURCE" ]; then
-		RANDOM_SOURCE=/dev/urandom
+		local RANDOM_SOURCE=/dev/urandom
 	fi
 	PLACEHOLDER="$(cat $RANDOM_SOURCE | head -c $LENGTH | base64 | head -c $LENGTH)" enter_value
 	up_one_line
