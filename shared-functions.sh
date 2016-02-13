@@ -185,7 +185,7 @@ function docker_enter_value {
 
 function docker_enter_password {
 	# parameters: VAR, DESC, PROMPT, LENGTH
-	banner "Please enter password for $DESC (below is fresh generated one, last time to copy it, it will be hidden on pressing enter):"
+	banner "Please enter password for $DESC (below is fresh generated one, ${BLDRED}last time to copy it${BLDCYN}, it will be hidden on pressing enter):"
 	if [ -z "$PROMPT" ]; then
 		PROMPT="$DESC"
 	fi
