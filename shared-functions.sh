@@ -1,6 +1,7 @@
 #!/bin/bash
 
 REQUIRED_SHELL_FEATURES="sudo docker cat head base64 netstat tput ls rm eval read stat awk grep tr rlwrap"
+PREVIOUSLY_ENTERED_DATA_DIR="$HOME/.cache/docker-shell"
 
 TXTRED='\e[0;31m' # red
 TXTGRN='\e[0;32m' # green
@@ -63,8 +64,18 @@ function _enter_data {
 	# parameters: VAR, RLWRAP_ARGUMENTS, POSSIBLE_VALUES, PROMPT, PLACEHOLDER
 	local FILE=$(tempfile)
 	echo "$POSSIBLE_VALUES" > $FILE
+	if [ -n "$DOSKER_SHELL_ID" ]; then
+		local HISTORY_FILE="$PREVIOUSLY_ENTERED_DATA_DIR/$DOSKER_SHELL_ID-$VAR"
+		if [ -f $HISTORY_FILE ]; then
+			PLACEHOLDER=$(cat $HISTORY_FILE)
+		fi
+	fi
 	local DATA=$(rlwrap $RLWRAP_ARGUMENTS --prompt-colour=Yellow --histsize=0 --substitute-prompt="$PROMPT: " --break-chars=',' --file $FILE --pre-given "$PLACEHOLDER" --one-shot cat)
 	rm $FILE
+	if [ -n "$DOSKER_SHELL_ID" ]; then
+		mkdir -p "$PREVIOUSLY_ENTERED_DATA_DIR"
+		echo "$DATA" > "$HISTORY_FILE"
+	fi
 	DATA="${DATA/ /}" declare_var
 }
 
